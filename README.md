@@ -5,12 +5,12 @@
 
 ### Wiki
 * [KangJunJun](./src/main/java/com/ddd/KangJunJun)
-* [anwjrrp33]
-* [deokmoon]
-* [iamsojung]
-* [jimbaemon]
-* [programmer-sjk]
-* [yomni]
+* [anwjrrp33](./src/main/java/com/ddd/anwjrrp33)
+* [deokmoon](./src/main/java/com/ddd/deokmoon)
+* [iamsojung](./src/main/java/com/ddd/iamsojung)
+* [jimbaemon](./src/main/java/com/ddd/jimbaemon)
+* [programmer-sjk](./src/main/java/com/ddd/programmer-sjk)
+* [yomni](./src/main/java/com/ddd/yomni)
 
 ### Chapter1 발표자 후기 - 배재현
 좋은 분들 덕분에 즐거운 발표가 된것 같습니다. 부족한게 많은 부분을 다른 분들이 채워 주셔서 부담이 많이 줄었습니다 🙇🏻‍♂️
