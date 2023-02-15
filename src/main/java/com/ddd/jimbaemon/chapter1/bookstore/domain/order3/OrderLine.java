@@ -1,6 +1,6 @@
-package com.ddd.jimbaemon.bookstore.domain.order3;
+package com.ddd.jimbaemon.chapter1.bookstore.domain.order3;
 
-import com.ddd.jimbaemon.bookstore.domain.order2.Product;
+import com.ddd.jimbaemon.chapter1.bookstore.domain.order2.Product;
 
 public class OrderLine {
 

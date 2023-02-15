@@ -1,4 +1,4 @@
-package com.ddd.jimbaemon.bookstore.domain.order2;
+package com.ddd.jimbaemon.chapter1.bookstore.domain.order2;
 
 //한 상품을 한 개 이상 주문할 수 있기 때문에(1:N) 객체로 분리
 public class OrderLine {

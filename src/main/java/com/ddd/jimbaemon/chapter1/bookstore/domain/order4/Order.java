@@ -1,6 +1,6 @@
-package com.ddd.jimbaemon.bookstore.domain.order4;
+package com.ddd.jimbaemon.chapter1.bookstore.domain.order4;
 
-import com.ddd.jimbaemon.bookstore.domain.order.ShippingInfo;
+import com.ddd.jimbaemon.chapter1.bookstore.domain.order.ShippingInfo;
 
 public class Order {
 

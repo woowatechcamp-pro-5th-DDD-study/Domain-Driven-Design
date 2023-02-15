@@ -1,4 +1,4 @@
-package com.ddd.jimbaemon.bookstore.domain.order;
+package com.ddd.jimbaemon.chapter1.bookstore.domain.order;
 
 /*
 주문 도메인의 경우 '출고 전에 배송지를 변경 할 수 있다' 라는 규칙과 '주문 취소는 배송 전에만 할 수 있다'
