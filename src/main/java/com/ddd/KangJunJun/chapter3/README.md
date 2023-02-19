@@ -89,6 +89,35 @@ ID로 차몾하는 경우 여러 애그리거트를 읽을 때 조회 속도가 
 
 ## 3.5 애그리거트 간 집합 연관
 
+개념적으로 존재하는 애그리거트 간의 1:N 연관을 실제 구현에 반영하는것이 요구사항을 충족하는 것과 상관없는 경우가 종종 있다.
 
+자신이 속한 카테고리를 N:1로 연관지어 구할 수도 있다.
 
 ## 3.6 애그리거트를 팩토리로 사용하기
+
+중요한 도메인 로직 처리를 응용 서비스에 노출시키지 않기 위해 애그리거트를 팩토리로 이용할 수 있다.
+
+```
+public class Store {
+    public Product createProduct(ProductId newProductId, ... ) {
+        if (!isBlocked())  throw new StoreBlockedException();      
+        return new Product(newProductId, getId(), ...);
+    }
+}
+
+public class RegisterProductService {
+    public ProductId registerNewProduct(NewProductRequest req) {
+        Store store = storeRepository.findStoreById(req.getStoreId());
+        checkNull(store);
+        ProductId id = productRepository.nextId();
+        Product product = store.createProduct(id, ...); // Store에서 직접 생성
+        productRepository.save(product);
+        return id;
+    }
+}
+```
+Store 애그리거트의 createProduct()는 Product 애그리거트를 생성하는 팩토리 역할을 한다.
+
+애그리거트를 팩토리로 사용하여 가능 여부를 확인하는 도메인 로직을 변경해도 도메인 영역의 Store만 변경하면 되고 응용 서비스는 영향을 받지 않는다. <br />
+즉 의존성을 없애고 도메인의 응집도도 높아졌다.
+
