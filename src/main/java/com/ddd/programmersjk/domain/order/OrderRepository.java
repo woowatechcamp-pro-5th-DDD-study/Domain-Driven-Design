@@ -1,4 +1,4 @@
-package com.ddd.programmersjk;
+package com.ddd.programmersjk.domain.order;
 
 import com.ddd.programmersjk.domain.order.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
