@@ -63,3 +63,25 @@ order.setAddress("성남시 ~~");
   - 만약 애그리거트가 필요하면 Service Layer에서 조회한다. [code](./OrderService2.java)
 - ID 참조를 사용하면 요구사항(전체 주문과 각 주문에 따른 상품)에 따라 N+1과 같은 쿼리가 발생할 수 있다.
   - 이 때는 그 데이터에 맞는 JPQL이나 그 대안들을 사용하자.
+
+## 3.5 애그리거트 간 집합 연관
+- 개념적으로 1-N, M-N 관계로 보이지만 실제 요구사항에서 연관관계가 필요 없을 수 있다. (위에서 언급한 ID를 이용할 수 있다.)
+- Category에 해당하는 상품을 조회한다는 요구사항이 존재
+  - 연관관계를 생각하기 쉽지만 [code](./domain/category/Category.java)
+  - 실제 기능은 페이징되서 제공된다. [code](./domain/product/ProductService.java)
+- 상품과 카테고리가 다대다 관계라면
+  - 카테고리에 해당하는 상품은 위의 케이스니까 제외
+  - 특정 상품 페이지에 들어갔을 때 여러 카테고리가 필요 
+```java
+@Entity
+public class Product { 
+    private Set<Long> categoryIds;
+}
+```
+
+## 3.6 애그리거트를 팩토리로 사용하기
+- 도메인의 상태나 값을 체크하는 로직은 서비스 layer 보다는 도메인 로직에 들어가는게 좋다.
+  - [BAD](./domain/product/ProductService.java)
+  - [GOOD](./domain/store/Store.java)
+- 애그리거트가 갖고 있는 데이터를 이용해 다른 애그리거트를 생성해야 한다면 애그리거트에 팩토리 메소드를 구현해보자.
+  - Product의 경우 Store의 식별자(id)와 Store의 상태가 필요함.
