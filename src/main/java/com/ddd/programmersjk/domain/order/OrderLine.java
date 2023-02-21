@@ -10,4 +10,11 @@ public class OrderLine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private int quantity;
+    private int price;
+
+    public int calculateAmount() {
+        return quantity * price;
+    }
 }

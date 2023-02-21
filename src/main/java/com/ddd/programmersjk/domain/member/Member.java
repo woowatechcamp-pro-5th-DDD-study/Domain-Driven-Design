@@ -12,4 +12,21 @@ public class Member {
     private Long id;
 
     private String name;
+    private String address;
+
+    public void changeAddress(String address) {
+        this.address = address;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
 }
