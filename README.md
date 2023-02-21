@@ -9,7 +9,7 @@
 * [deokmoon](./src/main/java/com/ddd/deokmoon)
 * [iamsojung](./src/main/java/com/ddd/iamsojung)
 * [jimbaemon](./src/main/java/com/ddd/jimbaemon)
-* [programmer-sjk](./src/main/java/com/ddd/programmer-sjk)
+* [programmer-sjk](./src/main/java/com/ddd/programmersjk)
 * [yomni](./src/main/java/com/ddd/yomni)
 
 ### Chapter1 발표자 후기 - 배재현
