@@ -3,11 +3,12 @@
 ## 3.1 애그리거트
 ![ERD](./images/1.png)
 
-- 복잡한 도메인을 상위 모델에서 볼 수 있는 방법이 필요한데 그 방법이 애그리거트다.
+- 복잡한 도메인을 상위 모델에서 볼 수 있는 방법이 필요한데 그 방법이 **애그리거트**다.
+- 애그리거트는 관련있는 객체를 하나의 그룹으로 묶어준다.
 
 ![애그리거트](./images/2.png)
 
-- 애그리거트는 **동일한 라이프 사이클**을 가지고 대부분 함께 생성되고 제거된다. [code](./domain/order/Order.java)
+- 한 애그리거트에 속한 객체들은 **동일한 라이프 사이클**을 가지고 대부분 함께 생성되고 제거된다. [code](./domain/order/Order.java)
 - 한 애그리거트의 구성요소?
   - **같이 생성되거나 함께 변경**되는 빈도가 높다면 한 애그리거트에 속할 가능성이 높다. (Product vs Review -> 다른 애그리거트)
 
@@ -17,6 +18,7 @@
 
 ![애그리거트 루트](./images/3.png)
 
+- 애그리거트 외부에서 애그리거트에 속한 객체를 직접 변경하면 안된다.
 ```java
 Order order = member.getRecenOrder();
 order.setAddress("성남시 ~~");
@@ -84,4 +86,4 @@ public class Product {
   - [BAD](./domain/product/ProductService.java)
   - [GOOD](./domain/store/Store.java)
 - **애그리거트가 갖고 있는 데이터를 이용**해 다른 애그리거트를 생성해야 한다면 애그리거트에 팩토리 메소드를 구현해보자.
-  - Product의 경우 Store의 식별자(id)와 Store의 상태가 필요함.
+  - ex) Product의 경우 Store의 식별자(id)와 Store의 상태가 필요함.
