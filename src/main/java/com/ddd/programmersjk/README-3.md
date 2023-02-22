@@ -39,7 +39,7 @@ order.setAddress("성남시 ~~");
 
 - 한 트랜잭션에는 한 개의 애그리거트만 수정하자.
   - 나쁜 예 [code](./domain/order/Order.java)
-  - 부득이하게 해야 한다면 service에서 각 애그리거트 상태를 변경한다. [code](./OrderService.java)
+  - 부득이하게 해야 한다면 service에서 각 애그리거트 상태를 변경한다. [code](./domain/order/OrderService.java)
 
 ## 3.3 리포지터리와 애그리거트
 - 애그리거트는 한 개의 도메인 모델을 표현하므로 **리포지터리는 애그리거트 단위**로 존재한다.
