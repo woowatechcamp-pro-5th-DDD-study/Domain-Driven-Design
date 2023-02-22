@@ -3,11 +3,12 @@
 ## 3.1 애그리거트
 ![ERD](./images/1.png)
 
-- 복잡한 도메인을 상위 모델에서 볼 수 있는 방법이 필요한데 그 방법이 애그리거트다.
+- 복잡한 도메인을 상위 모델에서 볼 수 있는 방법이 필요한데 그 방법이 **애그리거트**다.
+- 애그리거트는 관련있는 객체를 하나의 그룹으로 묶어준다.
 
 ![애그리거트](./images/2.png)
 
-- 애그리거트는 **동일한 라이프 사이클**을 가지고 대부분 함께 생성되고 제거된다. [code](./domain/order/Order.java)
+- 한 애그리거트에 속한 객체들은 **동일한 라이프 사이클**을 가지고 대부분 함께 생성되고 제거된다. [code](./domain/order/Order.java)
 - 한 애그리거트의 구성요소?
   - **같이 생성되거나 함께 변경**되는 빈도가 높다면 한 애그리거트에 속할 가능성이 높다. (Product vs Review -> 다른 애그리거트)
 
@@ -17,6 +18,7 @@
 
 ![애그리거트 루트](./images/3.png)
 
+- 애그리거트 외부에서 애그리거트에 속한 객체를 직접 변경하면 안된다.
 ```java
 Order order = member.getRecenOrder();
 order.setAddress("성남시 ~~");
@@ -37,14 +39,14 @@ order.setAddress("성남시 ~~");
 
 - 한 트랜잭션에는 한 개의 애그리거트만 수정하자.
   - 나쁜 예 [code](./domain/order/Order.java)
-  - 부득이하게 해야 한다면 service에서 각 애그리거트 상태를 변경한다. [code](./OrderService.java)
+  - 부득이하게 해야 한다면 service에서 각 애그리거트 상태를 변경한다. [code](./domain/order/OrderService.java)
 
 ## 3.3 리포지터리와 애그리거트
 - 애그리거트는 한 개의 도메인 모델을 표현하므로 **리포지터리는 애그리거트 단위**로 존재한다.
 - 즉 DB 테이블이 Order와 OrderLine이 물리적으로 따로 있더라도 repository는 OrderRepository 하나만 존재한다.
 - 애그리거트 루트를 조회 및 저장할 때 **관련된 객체들 모두 같이 저장되고 조회**되어야 한다.
 
-## 3.4 ID를 이용한 애그리거트 참조 (우태켐 의존성 제거 작업이 기억남)
+## 3.4 ID를 이용한 애그리거트 참조 (우테켐 의존성 제거 작업이 기억남)
 - 애그리거트 간 참조는 **필드**를 통해 쉽게 구현할 수 있다. [code](./domain/order/Orderer.java)
 - JPA는 연관관계 어노테이션(ManyToOne, OneToOne)을 이용해서 다른 애그리거트의 데이터를 쉽게 조회할 수 있다.
 - 하지만 필드를 이용한 애그리거트는 다음 문제를 야기할 수 있다.
@@ -60,7 +62,7 @@ order.setAddress("성남시 ~~");
     - 애그리거트의 경계를 명확히 하고 의존성을 줄여줌. 
     - 직접 참조하지 않으므로 지연/즉시 로딩 고민 X
     - ID를 기반으로 서로 다른 구현 기술을 사용하는것도 가능해짐 (RDBMS + Mongo)
-  - 만약 애그리거트가 필요하면 Service Layer에서 조회한다. [code](./OrderService2.java)
+  - 만약 애그리거트에서 다른 애그리거트가 필요하면 Service Layer에서 조회한다. [code](./domain/order/OrderService2.java)
 - ID 참조를 사용하면 요구사항(전체 주문과 각 주문에 따른 상품)에 따라 N+1과 같은 쿼리가 발생할 수 있다.
   - 이 때는 그 데이터에 맞는 JPQL이나 그 대안들을 사용하자.
 
@@ -84,4 +86,4 @@ public class Product {
   - [BAD](./domain/product/ProductService.java)
   - [GOOD](./domain/store/Store.java)
 - **애그리거트가 갖고 있는 데이터를 이용**해 다른 애그리거트를 생성해야 한다면 애그리거트에 팩토리 메소드를 구현해보자.
-  - Product의 경우 Store의 식별자(id)와 Store의 상태가 필요함.
+  - ex) Product의 경우 Store의 식별자(id)와 Store의 상태가 필요함.
