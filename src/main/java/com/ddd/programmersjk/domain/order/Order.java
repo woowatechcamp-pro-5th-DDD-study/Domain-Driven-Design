@@ -22,6 +22,10 @@ public class Order {
     @Comment("주문 상태")
     private OrderStatus orderStatus;
 
+    @Comment("주문 금액")
+    @Embedded
+    private Money totalAmount;
+
     protected Order() {}
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
@@ -48,10 +52,11 @@ public class Order {
         return this.orderStatus == OrderStatus.READY;
     }
 
-    public int calculateTotalAmount() {
-        return orderLines.stream()
+    public void calculateTotalAmount() {
+        int sum = orderLines.stream()
                 .mapToInt(OrderLine::calculateAmount)
                 .sum();
+        this.totalAmount = new Money(sum);
     }
 
     public Orderer getOrderer() {
