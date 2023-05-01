@@ -6,6 +6,7 @@
 ## [Chapter 4. 리포지터리와 모델 구현](CHAPTER-4.md)
 ## [Chapter 5. 스프링 데이터 JPA를 이용한 조회 기능](CHAPTER-5.md)
 ## [Chapter 6. 응용 서비스와 표현 영역](CHAPTER-6.md)
+## [Chapter 7. 도메인 서비스](CHAPTER-7.md)
 
 ### DDD 를 적용해보자!(DDD 체크리스트)
 DDD 를 기계적으로 적용하기 위한 체크리스트 정리.  
